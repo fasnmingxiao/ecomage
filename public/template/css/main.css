@@ -1,0 +1,13 @@
+.slick-dots{
+    display: flex;
+}
+.slick-dots li{
+    list-style: none;
+}
+.slick-dots button{
+    font-size: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 100rem;
+    outline: none;
+}
