@@ -1,14 +1,5 @@
-.abc {
-    display: flex;
-    position: absolute;
-    bottom: 2%;
-    justify-content: start;
-}
-.abc li {
-    list-style: none;
-    padding: 0 10px;
-}
-.abc button {
+
+#cacxcasdasdasd button {
     font-size: 0;
     width: 8px;
     height: 8px;
@@ -16,9 +7,15 @@
     outline: none;
     border: none;
     background-color: #bcbcbc;
-}
-.slick-active button {
-    width: 26px;
-    background-color: #fed700;
     transition: all 0.2s linear;
 }
+#cacxcasdasdasd button.active {
+    width: 25px;
+    background-color: #fed700;
+}
+.wrapper-dot{
+    position: absolute;
+    left: 212px;
+    bottom: 22px;
+}
+
