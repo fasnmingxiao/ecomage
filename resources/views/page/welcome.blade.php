@@ -1,7 +1,8 @@
 @extends('layouts.demo')
 @section('content')
-    @extends('inc.slider')
-    {{-- <div class="container">
+    <main id="content" role="main">
+        @include('inc.slider')
+        {{-- <div class="container">
         <!-- Banner -->
         <div class="mb-5">
             <div class="row">
@@ -9162,16 +9163,80 @@
         </div>
         <!-- End Brand Carousel -->
     </div> --}}
+    </main>
 @endsection
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('.list-slider').slick({
+            $(".list-slider").slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 dots: true,
                 arrows: false,
+                dotsClass: "abc offset-xl-3 col-6",
+                // autoplay: true,
+                // autoplaySpeed: 5000,
             });
-        })
+            checkCurrentSlide();
+            $('.list-slider').on('afterChange', function(event, slick, currentSlide) {
+                var containerBefore = ".bg-img-hero-center[data-slick-index= " + currentSlide + "] ";
+                $(`${containerBefore} h1`).addClass(
+                    $(containerBefore + "h1").data('scs-animation-in'));
+                $(`${containerBefore} h6`).addClass(
+                    $(containerBefore + "h6").data('scs-animation-in'));
+                $(`${containerBefore} .price`).addClass(
+                    $(containerBefore + ".price").data('scs-animation-in'));
+                $(`${containerBefore} a`).addClass(
+                    $(containerBefore + "a").data('scs-animation-in'));
+                $(`${containerBefore} .thumb-slider`).addClass(
+                    $(containerBefore + ".thumb-slider").data('scs-animation-in'));
+            });
+            $('.list-slider').on('beforeChange', function(event, slick, beforeSlide) {
+                var containerBefore = ".bg-img-hero-center[data-slick-index= " + beforeSlide + "] ";
+                $(`${containerBefore} h1`).removeClass(
+                    $(containerBefore + "h1").data('scs-animation-in'))
+                $(`${containerBefore} h6`).removeClass(
+                    $(containerBefore + "h6").data('scs-animation-in'));
+                $(`${containerBefore} .price`).removeClass(
+                    $(containerBefore + ".price").data('scs-animation-in'));
+                $(`${containerBefore} a`).removeClass(
+                    $(containerBefore + "a").data('scs-animation-in'));
+                $(`${containerBefore} .thumb-slider`).removeClass(
+                    $(containerBefore + ".thumb-slider").data('scs-animation-in'));
+
+            });
+        });
+
+        function checkCurrentSlide() {
+            $(".slick-list .bg-img-hero-center.slick-slide.slick-active h1").addClass(
+                $("slick-list . );
+            $(".slick-list .bg-img-hero-center.slick-slide.slick-active h6").addClass(
+                $("slick-list .bg-img-hero-center.slick-slide.slick-active h6").data('scs-animation-in'));
+            $(".slick-list .bg-img-hero-center.slick-slide.slick-active .price").addClass(
+                $("slick-list .bg-img-hero-center.slick-slide.slick-active .price").data('scs-animation-in'));
+            $(".slick-list .bg-img-hero-center.slick-slide.slick-active a").addClass(
+                $("slick-list .bg-img-hero-center.slick-slide.slick-active a").data('scs-animation-in'));
+            $(".slick-list .bg-img-hero-center.slick-slide.slick-active .thumb-slider").addClass(
+                $("slick-list .bg-img-hero-center.slick-slide.slick-active .thumb-slider").data('scs-animation-in'));
+        };
+        const animateCSS = (element, animation, prefix = "animate__") =>
+            // We create a Promise and return it
+            new Promise((resolve, reject) => {
+                const animationName = `${prefix}${animation}`;
+                const node = document.querySelector(element);
+
+                node.classList.add(`${prefix}animated`, animationName);
+
+                // When the animation ends, we clean the classes and resolve the Promise
+                function handleAnimationEnd(event) {
+                    event.stopPropagation();
+                    node.classList.remove(`${prefix}animated`, animationName);
+                    resolve("Animation ended");
+                }
+
+                node.addEventListener("animationend", handleAnimationEnd, {
+                    once: true,
+                });
+            });
     </script>
 @endsection

@@ -1,13 +1,24 @@
-.slick-dots{
+.abc {
     display: flex;
+    position: absolute;
+    bottom: 2%;
+    justify-content: start;
 }
-.slick-dots li{
+.abc li {
     list-style: none;
+    padding: 0 10px;
 }
-.slick-dots button{
+.abc button {
     font-size: 0;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 100rem;
     outline: none;
+    border: none;
+    background-color: #bcbcbc;
+}
+.slick-active button {
+    width: 26px;
+    background-color: #fed700;
+    transition: all 0.2s linear;
 }
